@@ -1,0 +1,46 @@
+swagger: '2.0'
+info:
+  title: Watson Retrieval & Rank Web Service API
+  description: This file specifies apis we provided to interact with Watson Retrieval & Rank Service
+
+  version: "1.0.0"
+schemes:
+  - http
+basePath: /
+produces:
+  - application/json
+
+paths:
+  /v1/rr/createCluster/users/{username}/pwd/{passwd}:
+    post:
+      summary: Create the Retrieval&Rank Cluster
+      description: |
+        Create the Retrieval&Rank Cluster by sending username and password
+      parameters:
+        - name: username
+          in: path
+          description: user name
+          required: true
+          type: string
+        - name: passwd
+          in: path
+          description: password
+          required: true
+          type: string
+      tags:
+        - Watson
+      responses:
+        200:
+          description: successfully completed
+          schema:
+            $ref: '#/definitions/createClusterResponse'
+        400:
+          description: Bad Request - Fail to create the cluster
+
+definitions:
+  createClusterResponse:
+    type: object
+    properties:
+      clusterId:
+        type: string
+        description: a unique id for the cluster
